@@ -2,13 +2,13 @@
 
 /***
  * @ngdoc service
- * @name tiUtil
- * @module ngTagsInput
+ * @name cmcmTiUtil
+ * @module cmTagsInput
  *
  * @description
  * Helper methods used internally by the directive. Should not be called directly from user code.
  */
-tagsInput.factory('tiUtil', function($timeout, $q) {
+tagsInput.factory('cmTiUtil', function($timeout, $q) {
     var self = {};
 
     self.debounce = function(fn, delay) {

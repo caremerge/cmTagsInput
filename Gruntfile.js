@@ -16,9 +16,9 @@ module.exports = function(grunt) {
 
     var config = {
         pkg: grunt.file.readJSON('package.json'),
-        bowerDirectory: '../ngTagsInput-bower',
+        bowerDirectory: '../cmTagsInput-bower',
         bowerFile: '<%= bowerDirectory %>/bower.json',
-        websiteDirectory: '../ngTagsInput-website',
+        websiteDirectory: '../cmTagsInput-website',
         websiteConfigFile: '<%= websiteDirectory %>/_config.yml',
 
         files: {

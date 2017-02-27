@@ -3,18 +3,18 @@
     "name": "Michael Benford",
     "email": "michael@michaelbenford.net"
   },
-  "name": "ng-tags-input",
-  "prettyName": "ngTagsInput",
+  "name": "cm-tags-input",
+  "prettyName": "cmTagsInput",
   "version": "3.1.1",
   "description": "Tags input directive for AngularJS",
   "license": "MIT",
-  "homepage": "http://mbenford.github.io/ngTagsInput",
+  "homepage": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mbenford/ngTagsInput.git"
+    "url": ""
   },
   "bugs": {
-    "url": "https://github.com/mbenford/ngTagsInput/issues"
+    "url": ""
   },
   "keywords": [
     "angular",
@@ -24,7 +24,7 @@
   "scripts": {
     "test": "grunt test"
   },
-  "main": "build/ng-tags-input.min.js",
+  "main": "build/cm-tags-input.min.js",
   "dependencies": {},
   "devDependencies": {
     "dgeni": "0.4.1",

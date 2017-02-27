@@ -2,18 +2,18 @@
 
 /**
  * @ngdoc directive
- * @name tiAutosize
- * @module ngTagsInput
+ * @name cmTiAutosize
+ * @module cmTagsInput
  *
  * @description
- * Automatically sets the input's width so its content is always visible. Used internally by tagsInput directive.
+ * Automatically sets the input's width so its content is always visible. Used internally by cmTagsInput directive.
  */
-tagsInput.directive('tiAutosize', function(tagsInputConfig) {
+tagsInput.directive('cmTiAutosize', function(cmTagsInputConfig) {
     return {
         restrict: 'A',
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {
-            var threshold = tagsInputConfig.getTextAutosizeThreshold(),
+            var threshold = cmTagsInputConfig.getTextAutosizeThreshold(),
                 span, resize;
 
             span = angular.element('<span class="input"></span>');

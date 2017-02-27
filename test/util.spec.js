@@ -1,12 +1,12 @@
 'use strict';
 
-describe('tiUtil factory', function() {
-    var tiUtil;
+describe('cmTiUtil factory', function() {
+    var cmTiUtil;
 
     beforeEach(function() {
-        module('ngTagsInput');
-        inject(function(_tiUtil_) {
-            tiUtil = _tiUtil_;
+        module('cmTagsInput');
+        inject(function(_cmTiUtil_) {
+            cmTiUtil = _cmTiUtil_;
         });
     });
 
@@ -14,7 +14,7 @@ describe('tiUtil factory', function() {
         var sut;
 
         beforeEach(function() {
-            sut = tiUtil.simplePubSub();
+            sut = cmTiUtil.simplePubSub();
         });
 
         it('subscribes to an event', function() {
@@ -166,7 +166,7 @@ describe('tiUtil factory', function() {
     describe('makeObjectArray', function() {
         it('converts a non-object array into an object array using the provided key', function() {
             var array = ['a', 'b', 'c'],
-                result = tiUtil.makeObjectArray(array, 'prop');
+                result = cmTiUtil.makeObjectArray(array, 'prop');
 
             expect(result).not.toBe(array);
             expect(result).toEqual([
@@ -184,7 +184,7 @@ describe('tiUtil factory', function() {
             { desc: 'a string', value: 'a' }
         ].forEach(function(item) {
             it('returns the provided argument itself if it is ' + item.desc, function() {
-                expect(tiUtil.makeObjectArray(item.value, 'prop')).toBe(item.value);
+                expect(cmTiUtil.makeObjectArray(item.value, 'prop')).toBe(item.value);
             });
         });
     });
@@ -197,19 +197,19 @@ describe('tiUtil factory', function() {
         ];
 
         it('finds an object within an array by using the provided key', function() {
-            expect(tiUtil.findInObjectArray(array, { prop: 'bar' }, 'prop')).toBe(array[1]);
+            expect(cmTiUtil.findInObjectArray(array, { prop: 'bar' }, 'prop')).toBe(array[1]);
         });
 
         it('finds an object within an array by using the provided key regardless of the text case', function() {
-            expect(tiUtil.findInObjectArray(array, { prop: 'BAR' }, 'prop')).toBe(array[1]);
+            expect(cmTiUtil.findInObjectArray(array, { prop: 'BAR' }, 'prop')).toBe(array[1]);
         });
 
         it('returns null when the provided object is not found', function() {
-            expect(tiUtil.findInObjectArray(array, { prop: 'foobar' }, 'prop')).toBe(null);
+            expect(cmTiUtil.findInObjectArray(array, { prop: 'foobar' }, 'prop')).toBe(null);
         });
 
         it('returns null when the provided array is empty', function() {
-            expect(tiUtil.findInObjectArray([], { prop: 'foo' }, 'prop')).toBe(null);
+            expect(cmTiUtil.findInObjectArray([], { prop: 'foo' }, 'prop')).toBe(null);
         });
 
         it('uses a custom comparer to find an item within an array', function() {
@@ -217,48 +217,48 @@ describe('tiUtil factory', function() {
             var caseSensitiveComparer = function(a, b) { return a === b; };
 
             // Act/Assert
-            expect(tiUtil.findInObjectArray(array, { prop: 'BAR' }, 'prop', caseSensitiveComparer)).toBe(null);
+            expect(cmTiUtil.findInObjectArray(array, { prop: 'BAR' }, 'prop', caseSensitiveComparer)).toBe(null);
         });
     });
 
     describe('safeHighlight', function() {
         it('highlights the provided text', function() {
-            expect(tiUtil.safeHighlight('abc', 'b')).toBe('a<em>b</em>c');
-            expect(tiUtil.safeHighlight('aBc', 'b')).toBe('a<em>B</em>c');
-            expect(tiUtil.safeHighlight('abc', 'B')).toBe('a<em>b</em>c');
-            expect(tiUtil.safeHighlight('abcB', 'B')).toBe('a<em>b</em>c<em>B</em>');
-            expect(tiUtil.safeHighlight('abc', '')).toBe('abc');
+            expect(cmTiUtil.safeHighlight('abc', 'b')).toBe('a<em>b</em>c');
+            expect(cmTiUtil.safeHighlight('aBc', 'b')).toBe('a<em>B</em>c');
+            expect(cmTiUtil.safeHighlight('abc', 'B')).toBe('a<em>b</em>c');
+            expect(cmTiUtil.safeHighlight('abcB', 'B')).toBe('a<em>b</em>c<em>B</em>');
+            expect(cmTiUtil.safeHighlight('abc', '')).toBe('abc');
         });
 
         it('highlights HTML entities', function() {
-            expect(tiUtil.safeHighlight('a&a', '&')).toBe('a<em>&amp;</em>a');
-            expect(tiUtil.safeHighlight('a>a', '>')).toBe('a<em>&gt;</em>a');
-            expect(tiUtil.safeHighlight('a<a', '<')).toBe('a<em>&lt;</em>a');
-            expect(tiUtil.safeHighlight('<script>alert("XSS")</script>', '<'))
+            expect(cmTiUtil.safeHighlight('a&a', '&')).toBe('a<em>&amp;</em>a');
+            expect(cmTiUtil.safeHighlight('a>a', '>')).toBe('a<em>&gt;</em>a');
+            expect(cmTiUtil.safeHighlight('a<a', '<')).toBe('a<em>&lt;</em>a');
+            expect(cmTiUtil.safeHighlight('<script>alert("XSS")</script>', '<'))
                 .toBe('<em>&lt;</em>script&gt;alert("XSS")<em>&lt;</em>/script&gt;');
-            expect(tiUtil.safeHighlight('<script>alert("XSS")</script>', ''))
+            expect(cmTiUtil.safeHighlight('<script>alert("XSS")</script>', ''))
                 .toBe('&lt;script&gt;alert("XSS")&lt;/script&gt;');
         });
     });
 
     describe('safeToString', function() {
         it('returns an empty string when the provide value is either null or undefined', function() {
-            expect(tiUtil.safeToString(null)).toBe('');
-            expect(tiUtil.safeToString()).toBe('');
+            expect(cmTiUtil.safeToString(null)).toBe('');
+            expect(cmTiUtil.safeToString()).toBe('');
         });
 
         it('returns the trimmed string representation of the provided value', function() {
-            expect(tiUtil.safeToString(1)).toBe('1');
-            expect(tiUtil.safeToString(1.5)).toBe('1.5');
-            expect(tiUtil.safeToString(true)).toBe('true');
-            expect(tiUtil.safeToString(false)).toBe('false');
-            expect(tiUtil.safeToString('foo')).toBe('foo');
+            expect(cmTiUtil.safeToString(1)).toBe('1');
+            expect(cmTiUtil.safeToString(1.5)).toBe('1.5');
+            expect(cmTiUtil.safeToString(true)).toBe('true');
+            expect(cmTiUtil.safeToString(false)).toBe('false');
+            expect(cmTiUtil.safeToString('foo')).toBe('foo');
         });
     });
 
     describe('encodeHTML', function() {
         it('encodes <, > and & as HTML entities', function() {
-            expect(tiUtil.encodeHTML('<foo>&</foo>')).toBe('&lt;foo&gt;&amp;&lt;/foo&gt;');
+            expect(cmTiUtil.encodeHTML('<foo>&</foo>')).toBe('&lt;foo&gt;&amp;&lt;/foo&gt;');
         });
     });
 
@@ -276,7 +276,7 @@ describe('tiUtil factory', function() {
             var callback = jasmine.createSpy();
 
             // Act
-            var debounced = tiUtil.debounce(callback, 100);
+            var debounced = cmTiUtil.debounce(callback, 100);
 
             // Assert
             debounced('foo', 'bar');
@@ -297,7 +297,7 @@ describe('tiUtil factory', function() {
             var fn = function() { return; };
 
             // Act
-            var result = tiUtil.handleUndefinedResult(fn, 'foobar')();
+            var result = cmTiUtil.handleUndefinedResult(fn, 'foobar')();
 
             // Act/Assert
             expect(result).toBe('foobar');
@@ -308,7 +308,7 @@ describe('tiUtil factory', function() {
             var fn = function() { return 1; };
 
             // Act
-            var result = tiUtil.handleUndefinedResult(fn, 'foobar')();
+            var result = cmTiUtil.handleUndefinedResult(fn, 'foobar')();
 
             // Act/Assert
             expect(result).toBe(1);
@@ -319,7 +319,7 @@ describe('tiUtil factory', function() {
             var fn = function(a, b) { return a + b; };
 
             // Act
-            var result = tiUtil.handleUndefinedResult(fn)(1, 2);
+            var result = cmTiUtil.handleUndefinedResult(fn)(1, 2);
 
             // Assert
             expect(result).toBe(3);
@@ -328,34 +328,34 @@ describe('tiUtil factory', function() {
 
     describe('replaceSpacesWithDashes', function() {
         it('replaces spaces with dashes within the provided string', function() {
-            expect(tiUtil.replaceSpacesWithDashes('a b c')).toBe('a-b-c');
-            expect(tiUtil.replaceSpacesWithDashes('a     b     c')).toBe('a-----b-----c');
-            expect(tiUtil.replaceSpacesWithDashes('a b c ')).toBe('a-b-c');
-            expect(tiUtil.replaceSpacesWithDashes(' a b c')).toBe('a-b-c');
-            expect(tiUtil.replaceSpacesWithDashes(' a b c ')).toBe('a-b-c');
-            expect(tiUtil.replaceSpacesWithDashes('')).toBe('');
-            expect(tiUtil.replaceSpacesWithDashes(null)).toBe('');
-            expect(tiUtil.replaceSpacesWithDashes()).toBe('');
+            expect(cmTiUtil.replaceSpacesWithDashes('a b c')).toBe('a-b-c');
+            expect(cmTiUtil.replaceSpacesWithDashes('a     b     c')).toBe('a-----b-----c');
+            expect(cmTiUtil.replaceSpacesWithDashes('a b c ')).toBe('a-b-c');
+            expect(cmTiUtil.replaceSpacesWithDashes(' a b c')).toBe('a-b-c');
+            expect(cmTiUtil.replaceSpacesWithDashes(' a b c ')).toBe('a-b-c');
+            expect(cmTiUtil.replaceSpacesWithDashes('')).toBe('');
+            expect(cmTiUtil.replaceSpacesWithDashes(null)).toBe('');
+            expect(cmTiUtil.replaceSpacesWithDashes()).toBe('');
         });
     });
 
     describe('isModifierOn', function() {
         it('returns true if a modifier is on', function() {
-            expect(tiUtil.isModifierOn({ shiftKey: true })).toBe(true);
-            expect(tiUtil.isModifierOn({ ctrlKey: true })).toBe(true);
-            expect(tiUtil.isModifierOn({ altKey: true })).toBe(true);
-            expect(tiUtil.isModifierOn({ metaKey: true })).toBe(true);
+            expect(cmTiUtil.isModifierOn({ shiftKey: true })).toBe(true);
+            expect(cmTiUtil.isModifierOn({ ctrlKey: true })).toBe(true);
+            expect(cmTiUtil.isModifierOn({ altKey: true })).toBe(true);
+            expect(cmTiUtil.isModifierOn({ metaKey: true })).toBe(true);
         });
 
         it('returns false if all modifiers are off', function() {
-            expect(tiUtil.isModifierOn({
+            expect(cmTiUtil.isModifierOn({
                 shiftKey: false,
                 ctrlKey: false,
                 altKey: false,
                 metaKey: false
             })).toBe(false);
 
-            expect(tiUtil.isModifierOn({
+            expect(cmTiUtil.isModifierOn({
                 shiftKey: false,
                 ctrlKey: false,
                 altKey: true,

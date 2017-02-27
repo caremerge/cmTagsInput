@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc directive
- * @name tiTranscludeAppend
- * @module ngTagsInput
+ * @name cmTiTranscludeAppend
+ * @module cmTagsInput
  *
  * @description
- * Re-creates the old behavior of ng-transclude. Used internally by tagsInput directive.
+ * Re-creates the old behavior of ng-transclude. Used internally by cmTagsInput directive.
  */
-tagsInput.directive('tiTranscludeAppend', function() {
+tagsInput.directive('cmTiTranscludeAppend', function() {
     return function(scope, element, attrs, ctrl, transcludeFn) {
         transcludeFn(function(clone) {
             element.append(clone);

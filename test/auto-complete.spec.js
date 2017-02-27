@@ -1,13 +1,13 @@
 'use strict';
 
-describe('autoComplete directive', function() {
+describe('cmAutoComplete directive', function() {
     var $compile, $scope, $q, $timeout,
         parentCtrl, element, isolateScope, suggestionList, deferred, tagsInput, eventHandlers;
 
     beforeEach(function() {
         jasmine.addMatchers(customMatchers);
 
-        module('ngTagsInput');
+        module('cmTagsInput');
 
         inject(function($rootScope, _$compile_, _$q_, _$timeout_) {
             $scope = $rootScope;
@@ -49,14 +49,14 @@ describe('autoComplete directive', function() {
     function compile() {
         var parent, options;
 
-        parent = $compile('<tags-input ng-model="whatever"></tags-input>')($scope);
+        parent = $compile('<cm-tags-input ng-model="whatever"></cm-tags-input>')($scope);
         $scope.$digest();
 
-        parentCtrl = parent.controller('tagsInput');
+        parentCtrl = parent.controller('cmTagsInput');
         spyOn(parentCtrl, 'registerAutocomplete').and.returnValue(tagsInput);
 
         options = jQuery.makeArray(arguments).join(' ');
-        element = angular.element('<auto-complete source="loadItems($query)" ' + options + '></auto-complete>');
+        element = angular.element('<cm-auto-complete source="loadItems($query)" ' + options + '></cm-auto-complete>');
         parent.append(element);
 
         $compile(element)($scope);
@@ -96,7 +96,7 @@ describe('autoComplete directive', function() {
     }
 
     function getSuggestionText(index) {
-        return getSuggestion(index).find('ti-autocomplete-match > ng-include > span').html();
+        return getSuggestion(index).find('cm-ti-autocomplete-match > ng-include > span').html();
     }
 
     function isSuggestionsBoxVisible() {
@@ -1064,7 +1064,7 @@ describe('autoComplete directive', function() {
 
         function getSuggestionContent(index) {
             return getSuggestion(index)
-                .find('ti-autocomplete-match > ng-include')
+                .find('cm-ti-autocomplete-match > ng-include')
                 .children()
                 .removeAttr('class')
                 .parent()
@@ -1073,7 +1073,7 @@ describe('autoComplete directive', function() {
 
         function getSuggestionScope(index) {
             return getSuggestion(index)
-                .find('ti-autocomplete-match > ng-include')
+                .find('cm-ti-autocomplete-match > ng-include')
                 .children()
                 .scope();
         }
@@ -1085,7 +1085,7 @@ describe('autoComplete directive', function() {
         });
 
         it('initializes the option to the default template file', function() {
-            expect(isolateScope.options.template).toBe('ngTagsInput/auto-complete-match.html');
+            expect(isolateScope.options.template).toBe('cmTagsInput/auto-complete-match.html');
         });
 
         it('loads and uses the provided template', function() {

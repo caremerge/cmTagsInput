@@ -2,8 +2,8 @@
 
 /**
  * @ngdoc directive
- * @name tagsInput
- * @module ngTagsInput
+ * @name cmTagsInput
+ * @module cmTagsInput
  *
  * @description
  * Renders an input box with tag editing support.
@@ -54,12 +54,12 @@
  * @param {expression=} [onTagRemoved=NA] Expression to evaluate upon removing an existing tag. The removed tag is available as $tag.
  * @param {expression=} [onTagClicked=NA] Expression to evaluate upon clicking an existing tag. The clicked tag is available as $tag.
  */
-tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tagsInputConfig, tiUtil) {
+tagsInput.directive('cmTagsInput', function($timeout, $document, $window, $q, cmTagsInputConfig, cmTiUtil) {
     function TagList(options, events, onTagAdding, onTagRemoving) {
         var self = {}, getTagText, setTagText, canAddTag, canRemoveTag;
 
         getTagText = function(tag) {
-            return tiUtil.safeToString(tag[options.displayProperty]);
+            return cmTiUtil.safeToString(tag[options.displayProperty]);
         };
 
         setTagText = function(tag, text) {
@@ -72,13 +72,13 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                         tagText.length >= options.minLength &&
                         tagText.length <= options.maxLength &&
                         options.allowedTagsPattern.test(tagText) &&
-                        !tiUtil.findInObjectArray(self.items, tag, options.keyProperty || options.displayProperty);
+                        !cmTiUtil.findInObjectArray(self.items, tag, options.keyProperty || options.displayProperty);
 
-            return $q.when(valid && onTagAdding({ $tag: tag })).then(tiUtil.promisifyValue);
+            return $q.when(valid && onTagAdding({ $tag: tag })).then(cmTiUtil.promisifyValue);
         };
 
         canRemoveTag = function(tag) {
-            return $q.when(onTagRemoving({ $tag: tag })).then(tiUtil.promisifyValue);
+            return $q.when(onTagRemoving({ $tag: tag })).then(cmTiUtil.promisifyValue);
         };
 
         self.items = [];
@@ -93,7 +93,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
             var tagText = getTagText(tag);
 
             if (options.replaceSpacesWithDashes) {
-                tagText = tiUtil.replaceSpacesWithDashes(tagText);
+                tagText = cmTiUtil.replaceSpacesWithDashes(tagText);
             }
 
             setTagText(tag, tagText);
@@ -176,12 +176,12 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
         },
         replace: false,
         transclude: true,
-        templateUrl: 'ngTagsInput/tags-input.html',
+        templateUrl: 'cmTagsInput/tags-input.html',
         controller: function($scope, $attrs, $element) {
-            $scope.events = tiUtil.simplePubSub();
+            $scope.events = cmTiUtil.simplePubSub();
 
-            tagsInputConfig.load('tagsInput', $scope, $attrs, {
-                template: [String, 'ngTagsInput/tag-item.html'],
+            cmTagsInputConfig.load('cmTagsInput', $scope, $attrs, {
+                template: [String, 'cmTagsInput/tag-item.html'],
                 type: [String, 'text', validateType],
                 placeholder: [String, 'Add a tag'],
                 tabindex: [Number, null],
@@ -207,8 +207,8 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
             });
 
             $scope.tagList = new TagList($scope.options, $scope.events,
-                tiUtil.handleUndefinedResult($scope.onTagAdding, true),
-                tiUtil.handleUndefinedResult($scope.onTagRemoving, true));
+                cmTiUtil.handleUndefinedResult($scope.onTagAdding, true),
+                cmTiUtil.handleUndefinedResult($scope.onTagRemoving, true));
 
             this.registerAutocomplete = function() {
                 var input = $element.find('input');
@@ -301,7 +301,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
 
             scope.$watch('tags', function(value) {
                 if (value) {
-                    tagList.items = tiUtil.makeObjectArray(value, options.displayProperty);
+                    tagList.items = cmTiUtil.makeObjectArray(value, options.displayProperty);
                     scope.tags = tagList.items;
                 }
                 else {
@@ -413,7 +413,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, $q, tags
                         addKeys = {},
                         shouldAdd, shouldRemove, shouldSelect, shouldEditLastTag;
 
-                    if (tiUtil.isModifierOn(event) || hotkeys.indexOf(key) === -1) {
+                    if (cmTiUtil.isModifierOn(event) || hotkeys.indexOf(key) === -1) {
                         return;
                     }
 

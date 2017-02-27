@@ -2,24 +2,24 @@
 
 /**
  * @ngdoc service
- * @name tagsInputConfig
- * @module ngTagsInput
+ * @name cmTagsInputConfig
+ * @module cmTagsInput
  *
  * @description
- * Sets global configuration settings for both tagsInput and autoComplete directives. It's also used internally to parse and
+ * Sets global configuration settings for both cmTagsInput and cmAutoComplete directives. It's also used internally to parse and
  *  initialize options from HTML attributes.
  */
-tagsInput.provider('tagsInputConfig', function() {
+tagsInput.provider('cmTagsInputConfig', function() {
     var globalDefaults = {},
         interpolationStatus = {},
         autosizeThreshold = 3;
 
     /**
      * @ngdoc method
-     * @name tagsInputConfig#setDefaults
+     * @name cmTagsInputConfig#setDefaults
      * @description Sets the default configuration option for a directive.
      *
-     * @param {string} directive Name of the directive to be configured. Must be either 'tagsInput' or 'autoComplete'.
+     * @param {string} directive Name of the directive to be configured. Must be either 'cmTagsInput' or 'cmAutoComplete'.
      * @param {object} defaults Object containing options and their values.
      *
      * @returns {object} The service itself for chaining purposes.
@@ -31,10 +31,10 @@ tagsInput.provider('tagsInputConfig', function() {
 
     /**
      * @ngdoc method
-     * @name tagsInputConfig#setActiveInterpolation
+     * @name cmTagsInputConfig#setActiveInterpolation
      * @description Sets active interpolation for a set of options.
      *
-     * @param {string} directive Name of the directive to be configured. Must be either 'tagsInput' or 'autoComplete'.
+     * @param {string} directive Name of the directive to be configured. Must be either 'cmTagsInput' or 'cmAutoComplete'.
      * @param {object} options Object containing which options should have interpolation turned on at all times.
      *
      * @returns {object} The service itself for chaining purposes.
@@ -46,8 +46,8 @@ tagsInput.provider('tagsInputConfig', function() {
 
     /**
      * @ngdoc method
-     * @name tagsInputConfig#setTextAutosizeThreshold
-     * @description Sets the threshold used by the tagsInput directive to re-size the inner input field element based on its contents.
+     * @name cmTagsInputConfig#setTextAutosizeThreshold
+     * @description Sets the threshold used by the cmTagsInput directive to re-size the inner input field element based on its contents.
      *
      * @param {number} threshold Threshold value, in pixels.
      *

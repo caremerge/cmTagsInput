@@ -1,7 +1,7 @@
 @import "../mixins";
 @import "variables";
 
-tags-input {
+cm-tags-input {
   &.ti-input-lg {
     min-height: $tags-height-lg;
 
@@ -51,13 +51,13 @@ tags-input {
   }
 }
 
-.has-feedback tags-input {
+.has-feedback cm-tags-input {
   .tags {
     padding-right: 30px;
   }
 }
 
-.has-success tags-input {
+.has-success cm-tags-input {
   .tags {
     border-color: $tags-border-color-success;
 
@@ -68,7 +68,7 @@ tags-input {
   }
 }
 
-.has-error tags-input {
+.has-error cm-tags-input {
   .tags {
     border-color: $tags-border-color-error;
 
@@ -79,7 +79,7 @@ tags-input {
   }
 }
 
-.has-warning tags-input {
+.has-warning cm-tags-input {
   .tags {
     border-color: $tags-border-color-warning;
 

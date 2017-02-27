@@ -5,7 +5,7 @@ describe('bind-attrs directive', function() {
         element;
 
     beforeEach(function() {
-        module('ngTagsInput');
+        module('cmTagsInput');
 
         inject(function($rootScope, _$compile_) {
             $scope = $rootScope;
@@ -14,7 +14,7 @@ describe('bind-attrs directive', function() {
     });
 
     function compile(value) {
-        element = $compile('<span ti-bind-attrs="' + value + '">')($scope);
+        element = $compile('<span cm-ti-bind-attrs="' + value + '">')($scope);
         $scope.$digest();
     }
 

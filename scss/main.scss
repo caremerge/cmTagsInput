@@ -1,4 +1,4 @@
-tags-input {
+cm-tags-input {
   display: block;
 
   *, *:before, *:after {
@@ -19,5 +19,5 @@ tags-input {
   }
 }
 
-@import "tags-input";
+@import "cm-tags-input";
 @import "auto-complete";

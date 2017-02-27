@@ -1,5 +1,5 @@
 {
-  "name": "ng-tags-input",
+  "name": "cm-tags-input",
   "version": "3.0.0",
   "dependencies": {
     "jasmine-core": {

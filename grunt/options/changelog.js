@@ -1,5 +1,5 @@
 module.exports = {
     options: {
-        github: 'mbenford/ngTagsInput'
+        github: 'caremerge/cmTagsInput'
     }
 };
