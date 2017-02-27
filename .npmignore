@@ -1,1 +1,12 @@
-!build/
+coverage/
+docs/
+grunt/
+scss/
+src/
+templates/
+test/
+.jshintrc
+.travis.yml
+Gruntfile.js
+karma.conf.js
+sauce.launchers.json

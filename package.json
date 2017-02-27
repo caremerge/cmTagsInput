@@ -5,7 +5,7 @@
   },
   "name": "cm-tags-input",
   "prettyName": "cmTagsInput",
-  "version": "3.1.1-alpha.1",
+  "version": "3.1.1-alpha.2",
   "description": "Tags input directive for AngularJS",
   "license": "MIT",
   "homepage": "",
