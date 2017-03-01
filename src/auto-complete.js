@@ -2,8 +2,8 @@
 
 /**
  * @ngdoc directive
- * @name autoComplete
- * @module ngTagsInput
+ * @name cmAutoComplete
+ * @module cmTagsInput
  *
  * @description
  * Provides autocomplete support for the tagsInput directive.
@@ -32,7 +32,7 @@
  *    of the evaluation must be one of the values supported by the ngClass directive (either a string, an array or an object).
  *    See https://docs.angularjs.org/api/ng/directive/ngClass for more information.
  */
-tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tagsInputConfig, tiUtil) {
+tagsInput.directive('cmAutoComplete', function($document, $timeout, $sce, $q, cmTagsInputConfig, cmTiUtil) {
     function SuggestionList(loadFn, options, events) {
         var self = {}, getDifference, lastPromise, getTagId;
 
@@ -42,12 +42,12 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
 
         getDifference = function(array1, array2) {
             return array1.filter(function(item) {
-                return !tiUtil.findInObjectArray(array2, item, getTagId(), function(a, b) {
+                return !cmTiUtil.findInObjectArray(array2, item, getTagId(), function(a, b) {
                     if (options.tagsInput.replaceSpacesWithDashes) {
-                        a = tiUtil.replaceSpacesWithDashes(a);
-                        b = tiUtil.replaceSpacesWithDashes(b);
+                        a = cmTiUtil.replaceSpacesWithDashes(a);
+                        b = cmTiUtil.replaceSpacesWithDashes(b);
                     }
-                    return tiUtil.defaultComparer(a, b);
+                    return cmTiUtil.defaultComparer(a, b);
                 });
             });
         };
@@ -70,7 +70,7 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
             }
             self.visible = true;
         };
-        self.load = tiUtil.debounce(function(query, tags) {
+        self.load = cmTiUtil.debounce(function(query, tags) {
             self.query = query;
 
             var promise = $q.when(loadFn({ $query: query }));
@@ -81,7 +81,7 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
                     return;
                 }
 
-                items = tiUtil.makeObjectArray(items.data || items, getTagId());
+                items = cmTiUtil.makeObjectArray(items.data || items, getTagId());
                 items = getDifference(items, tags);
                 self.items = items.slice(0, options.maxResultsToShow);
 
@@ -135,17 +135,17 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
 
     return {
         restrict: 'E',
-        require: '^tagsInput',
+        require: '^cmTagsInput',
         scope: {
             source: '&',
             matchClass: '&'
         },
-        templateUrl: 'ngTagsInput/auto-complete.html',
+        templateUrl: 'cmTagsInput/auto-complete.html',
         controller: function($scope, $element, $attrs) {
-            $scope.events = tiUtil.simplePubSub();
+            $scope.events = cmTiUtil.simplePubSub();
 
-            tagsInputConfig.load('autoComplete', $scope, $attrs, {
-                template: [String, 'ngTagsInput/auto-complete-match.html'],
+            cmTagsInputConfig.load('cmAutoComplete', $scope, $attrs, {
+                template: [String, 'cmTagsInput/auto-complete-match.html'],
                 debounceDelay: [Number, 100],
                 minLength: [Number, 3],
                 highlightMatchedText: [Boolean, true],
@@ -236,7 +236,7 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, $q, tags
                     var key = event.keyCode,
                         handled = false;
 
-                    if (tiUtil.isModifierOn(event) || hotkeys.indexOf(key) === -1) {
+                    if (cmTiUtil.isModifierOn(event) || hotkeys.indexOf(key) === -1) {
                         return;
                     }
 

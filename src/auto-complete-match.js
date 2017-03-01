@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc directive
- * @name tiAutocompleteMatch
- * @module ngTagsInput
+ * @name cmTiAutocompleteMatch
+ * @module cmTagsInput
  *
  * @description
  * Represents an autocomplete match. Used internally by the autoComplete directive.
  */
-tagsInput.directive('tiAutocompleteMatch', function($sce, tiUtil) {
+tagsInput.directive('cmTiAutocompleteMatch', function($sce, cmTiUtil) {
     return {
         restrict: 'E',
-        require: '^autoComplete',
+        require: '^cmAutoComplete',
         template: '<ng-include src="$$template"></ng-include>',
         scope: {
             $scope: '=scope',
@@ -26,12 +26,12 @@ tagsInput.directive('tiAutocompleteMatch', function($sce, tiUtil) {
 
             scope.$highlight = function(text) {
                 if (options.highlightMatchedText) {
-                    text = tiUtil.safeHighlight(text, autoComplete.getQuery());
+                    text = cmTiUtil.safeHighlight(text, autoComplete.getQuery());
                 }
                 return $sce.trustAsHtml(text);
             };
             scope.$getDisplayText =  function() {
-                return tiUtil.safeToString(scope.data[options.displayProperty || options.tagsInput.displayProperty]);
+                return cmTiUtil.safeToString(scope.data[options.displayProperty || options.tagsInput.displayProperty]);
             };
         }
     };

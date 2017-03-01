@@ -5,13 +5,13 @@ describe('configuration service', function() {
         attrs, provider, service;
 
     beforeEach(function() {
-        module('ngTagsInput', function(tagsInputConfigProvider) {
-            provider = tagsInputConfigProvider;
+        module('cmTagsInput', function(cmTagsInputConfigProvider) {
+            provider = cmTagsInputConfigProvider;
         });
 
-        inject(function($rootScope, tagsInputConfig) {
+        inject(function($rootScope, cmTagsInputConfig) {
             $scope = $rootScope.$new();
-            service = tagsInputConfig;
+            service = cmTagsInputConfig;
         });
 
         attrs = {};

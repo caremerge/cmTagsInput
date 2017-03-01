@@ -1,9 +1,8 @@
-# ngTagsInput 
+# cmTagsInput 
 
-[![Travis](https://img.shields.io/travis/mbenford/ngTagsInput.svg?style=flat)](https://travis-ci.org/mbenford/ngTagsInput)
-[![Coveralls](https://img.shields.io/coveralls/mbenford/ngTagsInput.svg?style=flat)](https://coveralls.io/r/mbenford/ngTagsInput?branch=master)
-[![David](https://img.shields.io/david/dev/mbenford/ngTagsInput.svg?style=flat)](https://david-dm.org/mbenford/ngTagsInput#info=devDependencies)
-[![GitHub release](https://img.shields.io/github/release/mbenford/ngTagsInput.svg)](https://github.com/mbenford/ngTagsInput/releases)
+cmTagsInput is a fork of ngTagsInput which can be customized without disturbing other ngTagsInput instances and can be used alongside ngTagsInput.
+
+ngTagsInput README follows:
 
 Tags input directive for AngularJS. Check out the [ngTagsInput website](http://mbenford.github.io/ngTagsInput) for more information.
 

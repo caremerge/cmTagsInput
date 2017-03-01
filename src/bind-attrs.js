@@ -2,15 +2,15 @@
 
 /**
  * @ngdoc directive
- * @name tiBindAttrs
- * @module ngTagsInput
+ * @name cmTiBindAttrs
+ * @module cmTagsInput
  *
  * @description
- * Binds attributes to expressions. Used internally by tagsInput directive.
+ * Binds attributes to expressions. Used internally by cmTagsInput directive.
  */
-tagsInput.directive('tiBindAttrs', function() {
+tagsInput.directive('cmTiBindAttrs', function() {
     return function(scope, element, attrs) {
-        scope.$watch(attrs.tiBindAttrs, function(value) {
+        scope.$watch(attrs.cmTiBindAttrs, function(value) {
             angular.forEach(value, function(value, key) {
                 attrs.$set(key, value);
             });

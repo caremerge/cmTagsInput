@@ -19,7 +19,7 @@ module.exports = function(grunt) {
             singleRun: true,
             captureTimeout: 120000,
             sauceLabs: {
-                testName: 'ngTagsInput'
+                testName: 'cmTagsInput'
             },
             recordVideo: false,
             recordScreenshots: false,

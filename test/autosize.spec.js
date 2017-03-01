@@ -5,13 +5,13 @@ describe('autosize directive', function() {
         element, style, container;
 
     beforeEach(function() {
-        module('ngTagsInput');
+        module('cmTagsInput');
 
-        tagsInputConfigMock = jasmine.createSpyObj('tagsInputConfig', ['getTextAutosizeThreshold']);
+        tagsInputConfigMock = jasmine.createSpyObj('cmTagsInputConfig', ['getTextAutosizeThreshold']);
         tagsInputConfigMock.getTextAutosizeThreshold.and.returnValue(3);
 
         module(function($provide) {
-            $provide.value('tagsInputConfig', tagsInputConfigMock);
+            $provide.value('cmTagsInputConfig', tagsInputConfigMock);
         });
 
         inject(function($rootScope, _$compile_) {
@@ -31,7 +31,7 @@ describe('autosize directive', function() {
     function compile() {
         var attributes = $.makeArray(arguments).join(' ');
 
-        element = angular.element('<input class="input" ng-model="model" ng-trim="false" ti-autosize ' + attributes + '>');
+        element = angular.element('<input class="input" ng-model="model" ng-trim="false" cm-ti-autosize ' + attributes + '>');
         container.append(element);
 
         $compile(element)($scope);

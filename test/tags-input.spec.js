@@ -1,27 +1,27 @@
 'use strict';
 
-describe('tags-input directive', function() {
+describe('cm-tags-input directive', function() {
     var $compile, $scope, $timeout, $document, $window,
-        isolateScope, element, tiUtil;
+        isolateScope, element, cmTiUtil;
 
     beforeEach(function() {
         jasmine.addMatchers(customMatchers);
 
-        module('ngTagsInput');
+        module('cmTagsInput');
 
-        inject(function(_$compile_, _$rootScope_, _$document_, _$timeout_, _$window_, _tiUtil_) {
+        inject(function(_$compile_, _$rootScope_, _$document_, _$timeout_, _$window_, _cmTiUtil_) {
             $compile = _$compile_;
             $scope = _$rootScope_;
             $document = _$document_;
             $timeout = _$timeout_;
             $window = _$window_;
-            tiUtil = _tiUtil_;
+            cmTiUtil = _cmTiUtil_;
         });
     });
 
     function compile() {
         var options = jQuery.makeArray(arguments).join(' ');
-        var template = '<tags-input ng-model="tags" ' + options + '></tags-input>';
+        var template = '<cm-tags-input ng-model="tags" ' + options + '></cm-tags-input>';
 
         element = $compile(template)($scope);
         $scope.$digest();
@@ -30,7 +30,7 @@ describe('tags-input directive', function() {
 
     function compileWithForm() {
         var options = jQuery.makeArray(arguments).join(' ');
-        var template = '<form name="form"><tags-input ng-model="tags" ' + options + '></tags-input></form>';
+        var template = '<form name="form"><cm-tags-input ng-model="tags" ' + options + '></cm-tags-input></form>';
 
         element = $compile(template)($scope);
         $scope.$digest();
@@ -52,11 +52,11 @@ describe('tags-input directive', function() {
     }
 
     function getTagText(index) {
-        return getTag(index).find('ti-tag-item > ng-include > span').html();
+        return getTag(index).find('cm-ti-tag-item > ng-include > span').html();
     }
 
     function getRemoveButton(index) {
-        return getTag(index).find('ti-tag-item > ng-include > a').first();
+        return getTag(index).find('cm-ti-tag-item > ng-include > a').first();
     }
 
     function getInput() {
@@ -1527,7 +1527,7 @@ describe('tags-input directive', function() {
 
         function getTagContent(index) {
             return getTag(index)
-                .find('ti-tag-item > ng-include')
+                .find('cm-ti-tag-item > ng-include')
                 .children()
                 .removeAttr('class')
                 .parent()
@@ -1536,7 +1536,7 @@ describe('tags-input directive', function() {
 
         function getTagScope(index) {
             return getTag(index)
-                .find('ti-tag-item > ng-include')
+                .find('cm-ti-tag-item > ng-include')
                 .children()
                 .scope();
         }
@@ -1548,7 +1548,7 @@ describe('tags-input directive', function() {
         });
 
         it('initializes the option to the default template file', function() {
-            expect(isolateScope.options.template).toBe('ngTagsInput/tag-item.html');
+            expect(isolateScope.options.template).toBe('cmTagsInput/tag-item.html');
         });
 
         it('loads and uses the provided template', function() {
@@ -1739,7 +1739,7 @@ describe('tags-input directive', function() {
         it('adds a tag if the on-tag-adding callback allows it (promise result)', function() {
             // Arrange
             $scope.tagIsNotInvalid = function(newTag) {
-                return tiUtil.promisifyValue(newTag.text !== 'INVALID');
+                return cmTiUtil.promisifyValue(newTag.text !== 'INVALID');
             };
 
             compile('on-tag-adding="tagIsNotInvalid($tag)"');
@@ -1786,7 +1786,7 @@ describe('tags-input directive', function() {
         it('removes a tag if the on-tag-removing callback allows it (boolean result)', function() {
             // Arrange
             $scope.tagIsNotPermanent = function(newTag) {
-                return tiUtil.promisifyValue(newTag.text !== 'PERMANENT');
+                return cmTiUtil.promisifyValue(newTag.text !== 'PERMANENT');
             };
 
             compile('on-tag-removing="tagIsNotPermanent($tag)"');
@@ -2047,7 +2047,7 @@ describe('tags-input directive', function() {
 
         beforeEach(function() {
             compile();
-            autocompleteObj = element.controller('tagsInput').registerAutocomplete();
+            autocompleteObj = element.controller('cmTagsInput').registerAutocomplete();
         });
 
         it('creates an object containing all the autocomplete directive needs to work', function() {

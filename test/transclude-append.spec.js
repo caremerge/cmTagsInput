@@ -7,7 +7,7 @@ describe('transclude-append-directive', function () {
         element;
 
     beforeEach(function () {
-        module('ngTagsInput');
+        module('cmTagsInput');
         module(function($compileProvider) {
             directive = $compileProvider.directive;
         });
@@ -34,7 +34,7 @@ describe('transclude-append-directive', function () {
 
     it('appends the transcluded content to the end of an empty target element', function() {
         // Arrange
-        createDirective('<div ti-transclude-append></div>');
+        createDirective('<div cm-ti-transclude-append></div>');
 
         // Act
         compile('<foobar><p>transcluded content</p></foobar>');
@@ -45,7 +45,7 @@ describe('transclude-append-directive', function () {
 
     it('appends the transcluded content to the end of a non-empty target element', function() {
         // Arrange
-        createDirective('<div ti-transclude-append><p>existing content</p></div>');
+        createDirective('<div cm-ti-transclude-append><p>existing content</p></div>');
 
         // Act
         compile('<foobar><p>transcluded content</p></foobar>');

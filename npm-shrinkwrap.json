@@ -1,7 +1,7 @@
 {
-  "name": "ng-tags-input",
+  "name": "cm-tags-input",
   "version": "3.0.0",
-  "dependencies": {
+  "devDependencies": {
     "jasmine-core": {
       "version": "2.2.0",
       "from": "https://registry.npmjs.org/jasmine-core/-/jasmine-core-2.2.0.tgz",

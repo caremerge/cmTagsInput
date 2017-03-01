@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc directive
- * @name tiTagItem
- * @module ngTagsInput
+ * @name cmTiTagItem
+ * @module cmTagsInput
  *
  * @description
- * Represents a tag item. Used internally by the tagsInput directive.
+ * Represents a tag item. Used internally by the cmTagsInput directive.
  */
-tagsInput.directive('tiTagItem', function(tiUtil) {
+tagsInput.directive('cmTiTagItem', function(cmTiUtil) {
     return {
         restrict: 'E',
-        require: '^tagsInput',
+        require: '^cmTagsInput',
         template: '<ng-include src="$$template"></ng-include>',
         scope: {
             $scope: '=scope',
@@ -25,7 +25,7 @@ tagsInput.directive('tiTagItem', function(tiUtil) {
             scope.$$removeTagSymbol = options.removeTagSymbol;
 
             scope.$getDisplayText = function() {
-                return tiUtil.safeToString(scope.data[options.displayProperty]);
+                return cmTiUtil.safeToString(scope.data[options.displayProperty]);
             };
             scope.$removeTag = function() {
                 tagsInput.removeTag(scope.$index);

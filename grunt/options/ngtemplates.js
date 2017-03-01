@@ -7,7 +7,7 @@ module.exports = {
         },
         options: {
             url: function(url) {
-                return 'ngTagsInput/' + url.replace('templates/', '');
+                return 'cmTagsInput/' + url.replace('templates/', '');
             },
             bootstrap: function(module, script) {
                 return '/* HTML templates */\n' +
